@@ -3,7 +3,9 @@ import compression from "compression";
 import cors from "cors";
 import { Routes } from "./routes/Routes";
 
-export class App {
+import './database';
+
+export default class App {
     public app: express.Application;
     private routesPrefix: string;
 
