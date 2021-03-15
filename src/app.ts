@@ -1,17 +1,15 @@
 import express from "express";
 import compression from "compression";
 import cors from "cors";
-import { Routes } from "./routes/Routes";
 
 import './database';
+import { router } from "./routes/Routes";
 
 export default class App {
     public app: express.Application;
-    private routesPrefix: string;
 
     constructor() {
         this.app = express();
-        this.routesPrefix = "/api/v1";
         this.config();
         this.routes();
     }
@@ -31,6 +29,6 @@ export default class App {
     }
 
     public routes(): void {
-        this.app.use(`${this.routesPrefix}`, new Routes().routes());
+        this.app.use(router);
     }
 }

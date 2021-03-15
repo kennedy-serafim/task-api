@@ -40,8 +40,7 @@ export class CreateActivities1615742355082 implements MigrationInterface {
                 },
                 {
                     type: 'varchar',
-                    name: 'status',
-                    default: "Pendente"
+                    name: 'status'
                 },
                 {
                     name: "created_at",

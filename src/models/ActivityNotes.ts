@@ -9,7 +9,7 @@ import {
 import { v4 as uuid } from 'uuid';
 import { Activity } from "./Activity";
 
-@Entity()
+@Entity("activity_notes")
 export class ActivityNotes {
 
     @PrimaryColumn()

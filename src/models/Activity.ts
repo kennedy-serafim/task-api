@@ -11,7 +11,7 @@ import { v4 as uuid } from "uuid";
 import { ActivityNotes } from "./ActivityNotes";
 import { User } from "./User";
 
-@Entity()
+@Entity("activities")
 export class Activity {
 
     @PrimaryColumn()
@@ -20,19 +20,19 @@ export class Activity {
     @Column()
     title: string;
 
-    @Column('text')
+    @Column({ type: "text", nullable: true })
     description: string;
 
     @Column()
     start: Date
 
-    @Column()
+    @Column({ default: 1 })
     duration: number
 
     @Column()
     end: Date;
 
-    @Column()
+    @Column({ type: "varchar", default: "Pendente" })
     status: string;
 
     @ManyToOne(() => User, user => user.activities)

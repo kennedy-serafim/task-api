@@ -8,38 +8,41 @@ import {
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Activity } from "./Activity";
+import * as bcrypt from 'bcryptjs';
+import { IsDate, IsEmail, Length, MinLength } from 'class-validator';
 
-@Entity()
+@Entity("users")
 class User {
 
     @PrimaryColumn()
     readonly id: string;
 
     @Column()
+    @Length(3, 15)
     firstname: string;
 
     @Column()
+    @Length(3, 15)
     lastname: string;
 
-    @Column()
+    @Column({ nullable: true })
     birth: Date;
 
-    @Column()
-    username: string;
-
-    @Column()
+    @Column({ unique: true })
+    @IsEmail()
     email: string;
 
     @Column()
+    @MinLength(8)
     password: string;
 
-    @Column()
+    @Column({ nullable: true })
     phone: string;
 
-    @Column()
+    @Column({ default: 'Moçambique' })
     country: string;
 
-    @Column()
+    @Column({ default: 'Maputo' })
     city: string;
 
     @OneToMany(() => Activity, activity => activity.user)
@@ -56,7 +59,15 @@ class User {
             this.id = uuid();
         }
     }
-}
 
+    hashPassword() {
+        this.password = bcrypt.hashSync(this.password, 10);
+    }
+
+    checkIfUnEncryptedPasswordIsValid(unEncryptedPassword: string) {
+        return bcrypt.compareSync(unEncryptedPassword, this.password);
+    }
+
+}
 
 export { User };

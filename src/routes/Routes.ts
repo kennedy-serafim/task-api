@@ -1,13 +1,12 @@
 import { Router } from "express";
+import { router as userRouter } from "./UserRoutes";
+import { router as authRouter } from './AuthRoutes';
 
-export class Routes {
-    private router: Router;
+const router = Router();
+const apiPrefix = '/api/v1';
 
-    constructor() {
-        this.router = Router();
-    }
+router.use(apiPrefix, authRouter);
 
-    routes() {
-        return this.router;
-    }
-}
+router.use(apiPrefix, userRouter);
+
+export { router };
