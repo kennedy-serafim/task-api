@@ -59,6 +59,7 @@ passport.deserializeUser(async (id, done) => {
     const userRepository = getCustomRepository(UserRepository);
     try {
         const user = await userRepository.findOne(id);
+        user.password = undefined;
         done(null, user);
     } catch (error) {
         done(error, false);

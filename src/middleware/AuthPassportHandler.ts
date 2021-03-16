@@ -15,7 +15,7 @@ export const authenticate = (request: Request, response: Response, next: NextFun
         if (!user) {
             return response.status(401).send({
                 message: "unauthorized",
-                info
+                info: "User doesn't exists or not token provider"
             });
         } else {
             request.logIn(user, { session: true }, (error) => {

@@ -41,7 +41,7 @@ class AuthController {
                 token
             });
         } catch (error) {
-            return response.status(500).send(error);
+            return response.status(400).send(error);
         }
 
     }
@@ -54,7 +54,7 @@ class AuthController {
             const user = await userRepository.findOne({ email });
 
             if (!user) {
-                return response.status(400).send({ message: 'User not found' });
+                return response.status(404).send({ message: 'User not found' });
             }
 
             if (!user.checkIfUnEncryptedPasswordIsValid(password)) {
@@ -72,7 +72,7 @@ class AuthController {
                 token
             });
         } catch (error) {
-            return response.status(500).send({ error });
+            return response.status(400).send({ error });
         }
     }
 }

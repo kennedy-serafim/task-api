@@ -10,6 +10,7 @@ import {
 import { v4 as uuid } from "uuid";
 import { ActivityNotes } from "./ActivityNotes";
 import { User } from "./User";
+import { IsDate, MinLength } from 'class-validator';
 
 @Entity("activities")
 export class Activity {
@@ -18,21 +19,23 @@ export class Activity {
     readonly id: string;
 
     @Column()
+    @MinLength(3)
     title: string;
 
     @Column({ type: "text", nullable: true })
     description: string;
 
     @Column()
+    @IsDate()
     start: Date
 
     @Column({ default: 1 })
     duration: number
 
-    @Column()
+    @Column({ nullable: true })
     end: Date;
 
-    @Column({ type: "varchar", default: "Pendente" })
+    @Column({ default: "Pendente" })
     status: string;
 
     @ManyToOne(() => User, user => user.activities)
