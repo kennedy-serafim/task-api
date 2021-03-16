@@ -9,7 +9,7 @@ import {
 import { v4 as uuid } from "uuid";
 import { Activity } from "./Activity";
 import * as bcrypt from 'bcryptjs';
-import { IsDate, IsEmail, Length, MinLength } from 'class-validator';
+import { IsEmail, Length, MinLength } from 'class-validator';
 
 @Entity("users")
 class User {

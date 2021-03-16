@@ -2,6 +2,8 @@ import { Request, Response } from 'express';
 import { getCustomRepository } from 'typeorm';
 import { UserRepository } from '../repository/UserRepository';
 import { validate } from 'class-validator';
+import * as jwt from 'jsonwebtoken';
+import { JWT_SECRET } from '../config/config';
 
 class AuthController {
 
@@ -30,8 +32,13 @@ class AuthController {
             await userRepository.save(user);
             user.password = undefined;
 
+            const token = jwt.sign({ id: user.id }, JWT_SECRET, {
+                expiresIn: "1h"
+            });
+
             return response.status(201).send({
-                data: user
+                user,
+                token
             });
         } catch (error) {
             return response.status(500).send(error);
@@ -55,14 +62,19 @@ class AuthController {
             }
 
             user.password = undefined;
-            return response.status(200).send({
-                data: user
+
+            const token = jwt.sign({ id: user.id }, JWT_SECRET, {
+                expiresIn: "1h"
+            });
+
+            return response.status(200).json({
+                user,
+                token
             });
         } catch (error) {
             return response.status(500).send({ error });
         }
     }
-
 }
 
 export { AuthController };
