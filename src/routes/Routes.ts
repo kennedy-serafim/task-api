@@ -2,6 +2,7 @@ import { Router } from "express";
 import { router as userRouter } from "./UserRoutes";
 import { router as authRouter } from './AuthRoutes';
 import { router as activityRouter } from './ActivityRoutes';
+import { router as activityNotesRouter } from './ActivityNotesRoutes';
 import { authenticate } from '../middleware/AuthPassportHandler';
 
 const router = Router();
@@ -19,5 +20,6 @@ router.use(apiPrefix, authRouter);
 
 router.use(apiPrefix, authenticate, userRouter);
 router.use(apiPrefix, authenticate, activityRouter);
+router.use(apiPrefix, authenticate, activityNotesRouter);
 
 export { router };
