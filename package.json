@@ -4,12 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf build && tsc",
-    "typeorm": "ts-node-dev node_modules/typeorm/cli.js",
-    "postinstall": "tsc && mv -i -v build && rm -v -rf src",
+    "typeorm:dev": "ts-node-dev node_modules/typeorm/cli.js",
+    "typeorm": "npx node_modules/typeorm/cli.js",
+    "build": "tsc",
     "start": "node build/server.js",
-    "start:dev": "set PORT=3000 && node build/server.js",
-    "dev": "set PORT=3000 && ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts"
+    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server.ts"
   },
   "keywords": [],
   "author": "",
