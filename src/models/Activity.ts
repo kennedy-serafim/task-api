@@ -38,10 +38,10 @@ export class Activity {
     @Column({ default: "Pendente" })
     status: string;
 
-    @ManyToOne(() => User, user => user.activities)
+    @ManyToOne(() => User, user => user.activities, { onDelete: 'CASCADE' })
     user: User;
 
-    @OneToMany(() => ActivityNotes, notes => notes.activity)
+    @OneToMany(() => ActivityNotes, notes => notes.activity, { onDelete: "CASCADE" })
     activityNotes: ActivityNotes[]
 
     @CreateDateColumn()

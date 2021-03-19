@@ -45,7 +45,7 @@ class User {
     @Column({ default: 'Maputo' })
     city: string;
 
-    @OneToMany(() => Activity, activity => activity.user)
+    @OneToMany(() => Activity, activity => activity.user, { onDelete: 'CASCADE', onUpdate: "CASCADE" })
     activities: Activity[];
 
     @CreateDateColumn()

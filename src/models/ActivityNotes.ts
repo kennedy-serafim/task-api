@@ -24,7 +24,7 @@ export class ActivityNotes {
     @MinLength(3)
     description: string;
 
-    @ManyToOne(() => Activity, activity => activity.activityNotes)
+    @ManyToOne(() => Activity, activity => activity.activityNotes, { onDelete: 'CASCADE' })
     activity: Activity;
 
     @CreateDateColumn()

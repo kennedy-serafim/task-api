@@ -240,7 +240,7 @@ class ActivityController {
 
     async deleteAll(request: Request, response: Response) {
         const user: any = request.user;
-        const { userId, id } = request.params;
+        const { userId } = request.params;
         const activityRepository = getCustomRepository(ActivityRepository);
 
         try {
