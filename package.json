@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "rimraf build && tsc",
     "typeorm": "ts-node-dev node_modules/typeorm/cli.js",
+    "postinstall": "tsc && mv -i -v public build/ && rm -v -rf src",
+    "start": "node build/server.js",
+    "start:dev": "PORT=3000 node build/server.js",
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts"
   },
   "keywords": [],

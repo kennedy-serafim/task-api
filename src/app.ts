@@ -27,6 +27,7 @@ export default class App {
         this.app.use(compression());
         this.app.use(cors());
         this.app.use(passport.initialize());
+        // this.app.use('/public', express.static(path.join(__dirname, 'public')));
     }
 
     public routes(): void {
