@@ -17,6 +17,9 @@ const config: ConnectionOptions = {
     migrations: [rootDir + "/database/migrations/**" + extensionDir],
     cli: {
         migrationsDir: './src/database/migrations'
+    },
+    extra: {
+        ssl: false
     }
 }
 
