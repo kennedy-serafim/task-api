@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "typeorm:dev": "ts-node-dev node_modules/typeorm/cli.js",
-    "typeorm": "npx node_modules/typeorm/cli.js",
+    "typeorm": "ts-node-dev node_modules/typeorm/cli.js",
     "build": "tsc",
     "start": "node build/server.js",
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server.ts"
