@@ -19,7 +19,7 @@ const config: ConnectionOptions = {
         migrationsDir: './src/database/migrations'
     },
     extra: {
-        ssl: false
+        ssl: { rejectUnauthorized: false }
     }
 }
 
@@ -27,6 +27,5 @@ createConnection(config).then(async connection => {
     console.log('Connection Successful');
 }).catch(error => {
     console.log(error);
-    process.exit(1);
 });
 
