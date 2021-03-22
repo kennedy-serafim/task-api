@@ -8,6 +8,10 @@ const extensionDir = process.env.NODE_ENV === "development" ?
     ".ts" :
     ".js";
 
+const sslCertificate = process.env.NODE_ENV === "development" ?
+    null :
+    { rejectUnauthorized: false };
+
 const config: ConnectionOptions = {
     type: 'postgres',
     url: process.env.DATABASE_URL,
@@ -18,8 +22,9 @@ const config: ConnectionOptions = {
     cli: {
         migrationsDir: './src/database/migrations'
     },
+
     extra: {
-        ssl: { rejectUnauthorized: false }
+        ssl: sslCertificate
     }
 }
 
