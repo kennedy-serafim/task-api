@@ -29,3 +29,52 @@ Certifique-se de ter instalado em seu computador:
   yarn -v
   --output: 1.22.10
 ```
+
+### Instalando e Configurando
+1.  No terminal, clone o projecto:
+
+```bash
+    git clone https://github.com/kennedy-serafim/task-api.git
+```
+
+2.  Entre na pasta do projecto:
+
+```bash
+    cd task-api
+```
+
+3.  #### Crie um arquivo .env na pasta raiz do projecto e copie o conteúdo que está no arquivo .env.example
+    ```bash
+       touch .env
+    ```
+    - Preencha as credencias do banco de dados
+    - Preencha o valor do JWT_SECRET
+
+4.  Instale as dependências do projecto:
+    - npm ou yarn
+```bash
+    npm install
+```
+
+```bash
+    yarn install
+```
+
+5. Rode as migrations
+  ```bash
+     yarn typeorm migration:run
+  ```
+  
+  ```bash
+     npm run typeorm migration:run
+  ```
+  
+ ### Como Executar a API
+ 6. Execute no terminal
+ ```bash
+     yarn dev
+ ```
+  
+ ```bash
+     npm run dev
+ ```
