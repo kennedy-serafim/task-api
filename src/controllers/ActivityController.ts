@@ -27,7 +27,7 @@ class ActivityController {
             });
 
             if (activityExist) {
-                return response.status(200).send({
+                return response.status(409).send({
                     activity: activityExist,
                     message: `Activity with title ${title} already exists`
                 });

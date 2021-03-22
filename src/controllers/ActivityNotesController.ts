@@ -52,7 +52,7 @@ class ActivityNotesController {
             }
 
             if (activityNotesExist) {
-                return response.status(200).send({
+                return response.status(409).send({
                     activity_notes: activityNotesExist,
                     message: `Activity note with title ${title} already exists`
                 });
@@ -65,7 +65,7 @@ class ActivityNotesController {
             });
 
         } catch (error) {
-            return response.status(400).json({ error });
+            return response.status(500).json({ error });
         }
     }
 

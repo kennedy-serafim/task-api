@@ -20,9 +20,8 @@ const config: ConnectionOptions = {
     entities: [rootDir + "/models/**" + extensionDir],
     migrations: [rootDir + "/database/migrations/**" + extensionDir],
     cli: {
-        migrationsDir: './src/database/migrations'
+        migrationsDir: './src/database/migration'
     },
-
     extra: {
         ssl: sslCertificate
     }
