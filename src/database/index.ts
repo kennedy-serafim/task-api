@@ -1,12 +1,5 @@
+import { join } from "node:path";
 import { createConnection, ConnectionOptions } from "typeorm";
-
-const rootDir = process.env.NODE_ENV === "development" ?
-    "./src" :
-    "./build";
-
-const extensionDir = process.env.NODE_ENV === "development" ?
-    ".ts" :
-    ".js";
 
 const sslCertificate = process.env.NODE_ENV === "development" ?
     null :
@@ -15,10 +8,10 @@ const sslCertificate = process.env.NODE_ENV === "development" ?
 const config: ConnectionOptions = {
     type: 'postgres',
     url: process.env.DATABASE_URL,
-    logging: 'all',
+    logging: true,
     synchronize: true,
-    entities: [rootDir + "/models/**" + extensionDir],
-    migrations: [rootDir + "/database/migrations/**" + extensionDir],
+    entities: [__dirname + "/../models/**/*.{js,ts}"],
+    migrations: [__dirname + "/../database/migrations/**/*.{js,ts}"],
     cli: {
         migrationsDir: './src/database/migration'
     },
